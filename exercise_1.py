@@ -10,18 +10,18 @@ import sys
 sys.setrecursionlimit(100000)
 
 # function to check if number is prime through recursion
-def prime_recursive(num, i):
+def prime_recursive(num, current_value = 2):
   if (num == 0 or num == 1):
     return False
 
-  if num == i:
+  if num == current_value:
     return True
-  elif num % i == 0:
+  elif (num % current_value) == 0:
     return False
-  return prime_recursive(num, i + 1)
+  return prime_recursive(num, current_value + 1)
 
 # function to check if number is prime through iteration
-def prime_iteration(num, starting_value):
+def prime_iteration(num, starting_value = 2):
   if (num == 0 or num == 1):
     return False
 
