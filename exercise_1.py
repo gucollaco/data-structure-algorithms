@@ -42,7 +42,7 @@ def recursive_execution(random_numbers_array, starting_value):
       current_max = num
 
   print("\n--- recursive method ---")
-  print("greater prime: " + str(current_max))
+  print("greatest prime: " + str(current_max))
   print("seconds: " + str(time.time() - start_time))
 
 # iteration execution, using the prime_iteration method
@@ -57,7 +57,7 @@ def iteration_execution(random_numbers_array, starting_value):
       current_max = num
 
   print("\n--- iteration method ---")
-  print("greater prime: " + str(current_max))
+  print("greatest prime: " + str(current_max))
   print("seconds: " + str(time.time() - start_time))
 
 # main function
