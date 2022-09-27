@@ -17,7 +17,6 @@ resource.setrlimit(resource.RLIMIT_STACK, (resource.RLIM_INFINITY, resource.RLIM
 
 # shuffle array
 def shuffle_array(array):
-  random.seed(0)
   random.shuffle(array)
 
 # recursive sequential search method
