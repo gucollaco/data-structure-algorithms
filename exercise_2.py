@@ -58,30 +58,52 @@ def recursive_binary_search(numbers_array, numbers_array_left_index, numbers_arr
       
 # method that will call the recursive_sequential_search method
 def recursive_sequential(numbers_array, index, numbers_array_last_index, target_one, target_two):
+  # measuring the time to find the target one through this method
+  start_time_one = time.time()
   index_target_one = recursive_sequential_search(numbers_array, index, numbers_array_last_index, target_one)
-  index_target_two = recursive_sequential_search(numbers_array, index, numbers_array_last_index, target_two)
-
   print("\n--- recursive sequential search ---")
   print("index target one: " + str(index_target_one))
+  print("seconds: " + str(time.time() - start_time_one))
+
+  # measuring the time to find the target two through this method
+  start_time_two = time.time()
+  index_target_two = recursive_sequential_search(numbers_array, index, numbers_array_last_index, target_two)
+  print("\n--- recursive sequential search ---")
   print("index target two: " + str(index_target_two))
+  print("seconds: " + str(time.time() - start_time_two))
   return
 
 # method that will call the recursive_binary_search method
 def recursive_binary(numbers_array, numbers_array_left_index, numbers_array_right_index, target_one, target_two):
+  # first execution
   # the recursive_binary_search method expects the numbers array to be sorted
   numbers_array_sorted = copy.deepcopy(numbers_array)
+  start_time_one = time.time()
   numbers_array_sorted.sort()
+  
   # here we will have the sorted_index value, which will be the same as the value that corresponds to that index, as this numbers array is sorted
   sorted_index_target_one = recursive_binary_search(numbers_array_sorted, numbers_array_left_index, numbers_array_right_index, target_one)
-  sorted_index_target_two = recursive_binary_search(numbers_array_sorted, numbers_array_left_index, numbers_array_right_index, target_two)
+  print("\n--- recursive binary search ---")
+  print("target one found")
+  print("seconds: " + str(time.time() - start_time_one))
+  
+  # second execution
+  # the recursive_binary_search method expects the numbers array to be sorted
+  numbers_array_sorted_two = copy.deepcopy(numbers_array)
+  start_time_two = time.time()
+  numbers_array_sorted_two.sort()
+  
+  sorted_index_target_two = recursive_binary_search(numbers_array_sorted_two, numbers_array_left_index, numbers_array_right_index, target_two)
+  print("\n--- recursive binary search ---")
+  print("target two found")
+  print("seconds: " + str(time.time() - start_time_two))
 
   # once we have the sorted_index value, that we got through the recursive_binary_search method,
   # we can call the recursive_sequential_search passing the sorted_index as the target
   original_index_target_one =  recursive_sequential_search(numbers_array, numbers_array_left_index, numbers_array_right_index, sorted_index_target_one)
   original_index_target_two =  recursive_sequential_search(numbers_array, numbers_array_left_index, numbers_array_right_index, sorted_index_target_two)
 
-
-  print("\n--- recursive binary search ---")
+  print("\n")
   print("index target one: " + str(original_index_target_one))
   print("index target two: " + str(original_index_target_two))
   return
