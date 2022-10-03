@@ -23,7 +23,7 @@ def main():
   # the quantity of words to be received
   words_qty = input()
 
-  # loop from 0 to the informed quantity, calculating and sorting the permutations
+  # loop from 0 to the informed quantity of words, getting the permutations for each word
   for _ in range(0, int(words_qty)):
     word = input()
 
