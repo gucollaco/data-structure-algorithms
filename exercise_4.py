@@ -19,7 +19,7 @@ def shuffle_array(array):
   random.seed(0)
   random.shuffle(array)
 
-# shellsort implementation
+# shellsort implementation (shell sequence)
 # code imported from: https://www.programiz.com/dsa/shell-sort
 # the ascending parameter was added on top of the implementation
 def shellsort(array, n, ascending=True):
@@ -263,11 +263,11 @@ def main():
   numbers_array_merge_asc = copy.deepcopy(numbers_array_shell_asc)
   numbers_array_merge_desc = copy.deepcopy(numbers_array_shell_asc)
 
-  # ascending shellsort
+  # ascending shellsort (shell sequence)
   shellsort(numbers_array_shell_asc, numbers_array_length, True)
-  # ascending shellsort (ciura)
+  # ascending shellsort (ciura sequence)
   shellsort_gaps(numbers_array_shell_ciura_asc, numbers_array_length, ciura_sequence, True)
-  # ascending shellsort (knuth)
+  # ascending shellsort (knuth sequence)
   shellsort_gaps(numbers_array_shell_knuth_asc, numbers_array_length, knuth_sequence, True)
   # ascending heapsort
   heapsort(numbers_array_heap_asc, True)
@@ -279,11 +279,11 @@ def main():
   mergesort(numbers_array_merge_asc, True)
 
 
-  # descending shellsort
+  # descending shellsort (shell sequence)
   shellsort(numbers_array_shell_desc, numbers_array_length, False)
-  # ascending shellsort (ciura)
+  # ascending shellsort (ciura sequence)
   shellsort_gaps(numbers_array_shell_ciura_desc, numbers_array_length, ciura_sequence, False)
-  # ascending shellsort (knuth)
+  # ascending shellsort (knuth sequence)
   shellsort_gaps(numbers_array_shell_knuth_desc, numbers_array_length, knuth_sequence, False)
   # descending heapsort
   heapsort(numbers_array_heap_desc, False)
