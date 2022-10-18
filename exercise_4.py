@@ -5,8 +5,6 @@
 import random
 import copy
 import time
-import sys
-import resource
 
 # create a randomized array with the given length
 def create_random_array(array_length):
