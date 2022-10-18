@@ -5,11 +5,30 @@
 import random
 import copy
 import time
+import sys
+import resource
+
+# change recursion limit to avoid python maximum recursion depth exceeded runtime error
+sys.setrecursionlimit(500000)
+
+# change resource limits to avoid python segmentation fault (core dumped) error
+resource.setrlimit(resource.RLIMIT_STACK, (resource.RLIM_INFINITY, resource.RLIM_INFINITY))
 
 # create a randomized array with the given length
 def create_random_array(array_length):
   array = list(range(0, array_length))
   shuffle_array(array)
+  return array
+
+# create an asc ordered array with the given length
+def create_asc_array(array_length):
+  array = list(range(0, array_length))
+  return array
+
+# create a desc ordered array with the given length
+def create_desc_array(array_length):
+  array = list(range(0, array_length))
+  array.reverse()
   return array
 
 # shuffle array
@@ -240,7 +259,7 @@ def mergesort(array, ascending=True):
 # main function
 def main():
   # constants
-  numbers_array_length = 10
+  numbers_array_length = 100000
   ciura_sequence = [701, 301, 132, 57, 23, 10, 4, 1]
   knuth_sequence = [29524, 9841, 3280, 1093, 364, 121, 40, 13, 4, 1]
 
@@ -265,6 +284,8 @@ def main():
 
     # creating the arrays that will be ordered by each of the algorithms
     numbers_array_shell_asc = create_random_array(numbers_array_length)
+    # numbers_array_shell_asc = create_asc_array(numbers_array_length)
+    # numbers_array_shell_asc = create_desc_array(numbers_array_length)
     numbers_array_shell_ciura_asc = copy.deepcopy(numbers_array_shell_asc)
     numbers_array_shell_knuth_asc = copy.deepcopy(numbers_array_shell_asc)
     numbers_array_shell_desc = copy.deepcopy(numbers_array_shell_asc)
