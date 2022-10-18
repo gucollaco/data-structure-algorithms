@@ -281,7 +281,6 @@ def main():
     numbers_array_merge_asc = copy.deepcopy(numbers_array_shell_asc)
     numbers_array_merge_desc = copy.deepcopy(numbers_array_shell_asc)
 
-    print(numbers_array_shell_asc)
     print("________________")
     print("\n--iteration " + str(x+1) + "--")
     print("\n--ascending--")
