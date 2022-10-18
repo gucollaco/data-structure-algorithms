@@ -16,7 +16,6 @@ def create_random_array(array_length):
 
 # shuffle array
 def shuffle_array(array):
-  random.seed(0)
   random.shuffle(array)
 
 # shellsort implementation (shell sequence)
@@ -243,72 +242,156 @@ def mergesort(array, ascending=True):
 # main function
 def main():
   # constants
-  numbers_array_length = 20
+  numbers_array_length = 10
   ciura_sequence = [701, 301, 132, 57, 23, 10, 4, 1]
   knuth_sequence = [29524, 9841, 3280, 1093, 364, 121, 40, 13, 4, 1]
 
-  # creating the arrays that will be ordered by each of the algorithms
-  numbers_array_shell_asc = create_random_array(numbers_array_length)
-  numbers_array_shell_ciura_asc = copy.deepcopy(numbers_array_shell_asc)
-  numbers_array_shell_knuth_asc = copy.deepcopy(numbers_array_shell_asc)
-  numbers_array_shell_desc = copy.deepcopy(numbers_array_shell_asc)
-  numbers_array_shell_ciura_desc = copy.deepcopy(numbers_array_shell_asc)
-  numbers_array_shell_knuth_desc = copy.deepcopy(numbers_array_shell_asc)
-  numbers_array_heap_asc = copy.deepcopy(numbers_array_shell_asc)
-  numbers_array_heap_desc = copy.deepcopy(numbers_array_shell_asc)
-  numbers_array_quick_asc = copy.deepcopy(numbers_array_shell_asc)
-  numbers_array_quick_central_asc = copy.deepcopy(numbers_array_shell_asc)
-  numbers_array_quick_desc = copy.deepcopy(numbers_array_shell_asc)
-  numbers_array_quick_central_desc = copy.deepcopy(numbers_array_shell_asc)
-  numbers_array_merge_asc = copy.deepcopy(numbers_array_shell_asc)
-  numbers_array_merge_desc = copy.deepcopy(numbers_array_shell_asc)
+  # keep the results
+  keep_shell_asc = []
+  keep_shell_ciura_asc = []
+  keep_shell_knuth_asc = []
+  keep_shell_desc = []
+  keep_shell_ciura_desc = []
+  keep_shell_knuth_desc = []
+  keep_heap_asc = []
+  keep_heap_desc = []
+  keep_quick_asc = []
+  keep_quick_central_asc = []
+  keep_quick_desc = []
+  keep_quick_central_desc = []
+  keep_merge_asc = []
+  keep_merge_desc = []
 
-  # ascending shellsort (shell sequence)
-  shellsort(numbers_array_shell_asc, numbers_array_length, True)
-  # ascending shellsort (ciura sequence)
-  shellsort_gaps(numbers_array_shell_ciura_asc, numbers_array_length, ciura_sequence, True)
-  # ascending shellsort (knuth sequence)
-  shellsort_gaps(numbers_array_shell_knuth_asc, numbers_array_length, knuth_sequence, True)
-  # ascending heapsort
-  heapsort(numbers_array_heap_asc, True)
-  # ascending quicksort (rightmost pivot)
-  quicksort(numbers_array_quick_asc, 0, numbers_array_length - 1, True)
-  # ascending quicksort (central pivot)
-  quicksort(numbers_array_quick_central_asc, 0, numbers_array_length - 1, True, True)
-  # ascending mergesort
-  mergesort(numbers_array_merge_asc, True)
+  # we will run each one 10 times, and get the average
+  for x in range(0, 10): 
 
+    # creating the arrays that will be ordered by each of the algorithms
+    numbers_array_shell_asc = create_random_array(numbers_array_length)
+    numbers_array_shell_ciura_asc = copy.deepcopy(numbers_array_shell_asc)
+    numbers_array_shell_knuth_asc = copy.deepcopy(numbers_array_shell_asc)
+    numbers_array_shell_desc = copy.deepcopy(numbers_array_shell_asc)
+    numbers_array_shell_ciura_desc = copy.deepcopy(numbers_array_shell_asc)
+    numbers_array_shell_knuth_desc = copy.deepcopy(numbers_array_shell_asc)
+    numbers_array_heap_asc = copy.deepcopy(numbers_array_shell_asc)
+    numbers_array_heap_desc = copy.deepcopy(numbers_array_shell_asc)
+    numbers_array_quick_asc = copy.deepcopy(numbers_array_shell_asc)
+    numbers_array_quick_central_asc = copy.deepcopy(numbers_array_shell_asc)
+    numbers_array_quick_desc = copy.deepcopy(numbers_array_shell_asc)
+    numbers_array_quick_central_desc = copy.deepcopy(numbers_array_shell_asc)
+    numbers_array_merge_asc = copy.deepcopy(numbers_array_shell_asc)
+    numbers_array_merge_desc = copy.deepcopy(numbers_array_shell_asc)
 
-  # descending shellsort (shell sequence)
-  shellsort(numbers_array_shell_desc, numbers_array_length, False)
-  # ascending shellsort (ciura sequence)
-  shellsort_gaps(numbers_array_shell_ciura_desc, numbers_array_length, ciura_sequence, False)
-  # ascending shellsort (knuth sequence)
-  shellsort_gaps(numbers_array_shell_knuth_desc, numbers_array_length, knuth_sequence, False)
-  # descending heapsort
-  heapsort(numbers_array_heap_desc, False)
-  # descending quicksort (rightmost pivot)
-  quicksort(numbers_array_quick_desc, 0, numbers_array_length - 1, False)
-  # descending quicksort (central pivot)
-  quicksort(numbers_array_quick_central_desc, 0, numbers_array_length - 1, False, True)
-  # descending mergesort
-  mergesort(numbers_array_merge_desc, False)
+    print(numbers_array_shell_asc)
+    print("________________")
+    print("\n--iteration " + str(x+1) + "--")
+    print("\n--ascending--")
+    # ascending shellsort (shell sequence)
+    start_time = time.time()
+    shellsort(numbers_array_shell_asc, numbers_array_length, True)
+    time_interval = time.time() - start_time
+    print("Shellsort (shell sequence): " + str(time_interval))
+    keep_shell_asc.append(time_interval)
+    # ascending shellsort (ciura sequence)
+    start_time = time.time()
+    shellsort_gaps(numbers_array_shell_ciura_asc, numbers_array_length, ciura_sequence, True)
+    time_interval = time.time() - start_time
+    print("Shellsort (ciura sequence): " + str(time_interval))
+    keep_shell_ciura_asc.append(time_interval)
+    # ascending shellsort (knuth sequence)
+    start_time = time.time()
+    shellsort_gaps(numbers_array_shell_knuth_asc, numbers_array_length, knuth_sequence, True)
+    time_interval = time.time() - start_time
+    print("Shellsort (knuth sequence): " + str(time_interval))
+    keep_shell_knuth_asc.append(time_interval)
+    # ascending heapsort
+    start_time = time.time()
+    heapsort(numbers_array_heap_asc, True)
+    time_interval = time.time() - start_time
+    print("Heapsort: " + str(time_interval))
+    keep_heap_asc.append(time_interval)
+    # ascending quicksort (rightmost pivot)
+    start_time = time.time()
+    quicksort(numbers_array_quick_asc, 0, numbers_array_length - 1, True)
+    time_interval = time.time() - start_time
+    print("Quicksort (rightmost pivot): " + str(time_interval))
+    keep_quick_asc.append(time_interval)
+    # ascending quicksort (central pivot)
+    start_time = time.time()
+    quicksort(numbers_array_quick_central_asc, 0, numbers_array_length - 1, True, True)
+    time_interval = time.time() - start_time
+    print("Quicksort (central pivot): " + str(time_interval))
+    keep_quick_central_asc.append(time_interval)
+    # ascending mergesort
+    start_time = time.time()
+    mergesort(numbers_array_merge_asc, True)
+    time_interval = time.time() - start_time
+    print("Mergesort: " + str(time_interval))
+    keep_merge_asc.append(time_interval)
 
+    print("\n--descending--")
+    # descending shellsort (shell sequence)
+    start_time = time.time()
+    shellsort(numbers_array_shell_desc, numbers_array_length, False)
+    time_interval = time.time() - start_time
+    print("Shellsort (shell sequence): " + str(time_interval))
+    keep_shell_desc.append(time_interval)
+    # ascending shellsort (ciura sequence)
+    start_time = time.time()
+    shellsort_gaps(numbers_array_shell_ciura_desc, numbers_array_length, ciura_sequence, False)
+    time_interval = time.time() - start_time
+    print("Shellsort (ciura sequence): " + str(time_interval))
+    keep_shell_ciura_desc.append(time_interval)
+    # ascending shellsort (knuth sequence)
+    start_time = time.time()
+    shellsort_gaps(numbers_array_shell_knuth_desc, numbers_array_length, knuth_sequence, False)
+    time_interval = time.time() - start_time
+    print("Shellsort (knuth sequence): " + str(time_interval))
+    keep_shell_knuth_desc.append(time_interval)
+    # descending heapsort
+    start_time = time.time()
+    heapsort(numbers_array_heap_desc, False)
+    time_interval = time.time() - start_time
+    print("Heapsort: " + str(time_interval))
+    keep_heap_desc.append(time_interval)
+    # descending quicksort (rightmost pivot)
+    start_time = time.time()
+    quicksort(numbers_array_quick_desc, 0, numbers_array_length - 1, False)
+    time_interval = time.time() - start_time
+    print("Quicksort (rightmost pivot): " + str(time_interval))
+    keep_quick_desc.append(time_interval)
+    # descending quicksort (central pivot)
+    start_time = time.time()
+    quicksort(numbers_array_quick_central_desc, 0, numbers_array_length - 1, False, True)
+    time_interval = time.time() - start_time
+    print("Quicksort (central pivot): " + str(time_interval))
+    keep_quick_central_desc.append(time_interval)
+    # descending mergesort
+    start_time = time.time()
+    mergesort(numbers_array_merge_desc, False)
+    time_interval = time.time() - start_time
+    print("Mergesort: " + str(time_interval))
+    keep_merge_desc.append(time_interval)
 
-  print(numbers_array_shell_asc)
-  print(numbers_array_shell_ciura_asc)
-  print(numbers_array_shell_knuth_asc)
-  print(numbers_array_shell_ciura_desc)
-  print(numbers_array_shell_knuth_desc)
-  print(numbers_array_shell_desc)
-  print(numbers_array_heap_asc)
-  print(numbers_array_heap_desc)
-  print(numbers_array_quick_asc)
-  print(numbers_array_quick_central_asc)
-  print(numbers_array_quick_desc)
-  print(numbers_array_quick_central_desc)
-  print(numbers_array_merge_asc)
-  print(numbers_array_merge_desc)
+  print("________________")
+  print("\n--averages--")
+
+  print("\n--ascending--")
+  print("Shellsort (shell sequence): " + str(sum(keep_shell_asc) / len(keep_shell_asc)))
+  print("Shellsort (ciura sequence): " + str(sum(keep_shell_ciura_asc) / len(keep_shell_ciura_asc)))
+  print("Shellsort (knuth sequence): " + str(sum(keep_shell_knuth_asc) / len(keep_shell_knuth_asc)))
+  print("Heapsort: " + str(sum(keep_heap_asc) / len(keep_heap_asc)))
+  print("Quicksort (rightmost pivot): " + str(sum(keep_quick_asc) / len(keep_quick_asc)))
+  print("Quicksort (central pivot): " + str(sum(keep_quick_central_asc) / len(keep_quick_central_asc)))
+  print("Mergesort: " + str(sum(keep_merge_asc) / len(keep_merge_asc)))
+
+  print("\n--descending--")
+  print("Shellsort (shell sequence): " + str(sum(keep_shell_desc) / len(keep_shell_desc)))
+  print("Shellsort (ciura sequence): " + str(sum(keep_shell_ciura_desc) / len(keep_shell_ciura_desc)))
+  print("Shellsort (knuth sequence): " + str(sum(keep_shell_knuth_desc) / len(keep_shell_knuth_desc)))
+  print("Heapsort: " + str(sum(keep_heap_desc) / len(keep_heap_desc)))
+  print("Quicksort (rightmost pivot): " + str(sum(keep_quick_desc) / len(keep_quick_desc)))
+  print("Quicksort (central pivot): " + str(sum(keep_quick_central_desc) / len(keep_quick_central_desc)))
+  print("Mergesort: " + str(sum(keep_merge_desc) / len(keep_merge_desc)))
 
 # calling the main function
 if __name__ == "__main__":
