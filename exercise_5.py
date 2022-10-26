@@ -165,6 +165,7 @@ def main():
   # prints final arrays
   # print(keys_radix)
   # print(keys_merge)
+  # print(keys_heap)
 
 # calling the main function
 if __name__ == "__main__":
