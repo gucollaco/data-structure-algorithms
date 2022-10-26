@@ -103,13 +103,46 @@ def mergesort(array):
       j += 1
       k += 1
 
+# heapsort implementation
+# code imported from: https://www.programiz.com/dsa/heap-sort
+def heapsort(arr):
+  def heapify(arr, n, i):
+    # Find largest (when ascending) among root and children
+    largest = i
+    l = 2 * i + 1
+    r = 2 * i + 2
+
+    if l < n and arr[i] < arr[l]:
+      largest = l
+
+    if r < n and arr[largest] < arr[r]:
+      largest = r
+
+    # If root is not largest, swap with largest and continue heapifying
+    if largest != i:
+      arr[i], arr[largest] = arr[largest], arr[i]
+      heapify(arr, n, largest)
+
+  n = len(arr)
+
+  # Build max heap
+  for i in range(n//2, -1, -1):
+    heapify(arr, n, i)
+
+  for i in range(n-1, 0, -1):
+    # Swap
+    arr[i], arr[0] = arr[0], arr[i]
+
+    # Heapify root element
+    heapify(arr, i, 0)
+
 # main function
 def main():
   # constants
   dates_quantity = 10
   dates_radix, keys_radix = generate_random_dates(dates_quantity)
-  dates_merge = copy.deepcopy(dates_radix)
   keys_merge = copy.deepcopy(keys_radix)
+  keys_heap = copy.deepcopy(keys_radix)
 
   # radix_sort time
   start_time = time.time()
@@ -122,6 +155,12 @@ def main():
   mergesort(keys_merge)
   time_interval = time.time() - start_time
   print("Mergesort: " + str(time_interval))
+
+  # heapsort time
+  start_time = time.time()
+  heapsort(keys_heap)
+  time_interval = time.time() - start_time
+  print("Heapsort: " + str(time_interval))
 
   # prints final arrays
   # print(keys_radix)
