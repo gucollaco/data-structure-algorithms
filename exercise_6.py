@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+# Gustavo Martins Collaço
+
 from collections import defaultdict
 
 # path finding algorithm using breadth first search
