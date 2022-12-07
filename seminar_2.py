@@ -756,7 +756,7 @@ if __name__ == '__main__':
   keep_tree_avl_remove_1000 = []
   keep_treap_remove_1000 = []
 
-  # we will run each one 5 times, and get the average
+  # we will run each one 10 times, and get the average
   for x in range(0, 10): 
     print("________________")
     print("\n--Iteration " + str(x+1) + "--")
